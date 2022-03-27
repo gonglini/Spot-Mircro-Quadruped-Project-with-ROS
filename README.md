@@ -3,7 +3,7 @@
 This project was first created by Mike4192 and has been updated as I wish.
 https://github.com/mike4192/spotMicro
 
-![spot-min](https://user-images.githubusercontent.com/65767592/160275766-3961450b-984c-4919-9295-fa9ccbe66d64.jpg){: width="50%" height="50%"}
+![spot-min](https://user-images.githubusercontent.com/65767592/160275766-3961450b-984c-4919-9295-fa9ccbe66d64.jpg{: width="50%" height="50%"})
 
 ## Overview
 This project is the source code for a Spot Micro quadruped, a 4 legged open source robot. This code implements motion control of a 3d printed spot micro robot, including sit, stand, angle and walk control. Supporting libraries provide additional capabilities, such as mapping through SLAM and a body mounted lidar. The software is implemented on a Raspberry Pi 3B running Ubuntu 18.04 with ROS Melodic installed.
