@@ -1,10 +1,10 @@
 # Spot Micro Quadruped Project
 
-The project was initially made by mike4192.
+This project was first created by Mike4192 and has been updated as I wish.
 https://github.com/mike4192/spotMicro
 
 ## Overview
-This project is the source code for a Spot Micro quadruped, a 4 legged open source robot. This code implements motion control of a 3d printed spot micro robot, including sit, stand, angle and walk control. Supporting libraries provide additional capabilities, such as mapping through SLAM and a body mounted lidar. The software is implemented on a Raspberry Pi 3B running Ubuntu 16.04 with ROS Kinetic installed.
+This project is the source code for a Spot Micro quadruped, a 4 legged open source robot. This code implements motion control of a 3d printed spot micro robot, including sit, stand, angle and walk control. Supporting libraries provide additional capabilities, such as mapping through SLAM and a body mounted lidar. The software is implemented on a Raspberry Pi 3B running Ubuntu 18.04 with ROS Melodic installed.
 
 The software is composed of C++ and Python nodes in a ROS framework.
 
@@ -12,12 +12,12 @@ The software is composed of C++ and Python nodes in a ROS framework.
 The frame utilized is the Thingverse Spot Micro frame developed by KDY0523. See [the thingverse page](https://www.thingiverse.com/thing:3445283) for additional details for assembly hardware. The files for cls6336hv servos were printed which also fit the hv5523mg servos I used.
 
 Component List:
-* Computer: Raspberry Pi 3B -> JetsonNano & Melodic ROS
+* Computer: JetsonNano & Melodic ROS
 * Servo control board: PCA9685, controlled via i2c
-* Servos: 12 x PDI-HV5523MG -> CLS6336HV
+* Servos: CLS6336HV
 * LCD Panel: 16x2 i2c LCD panel (Optional)
-* Battery: 2s 4000 mAh Lipo, direct connection to servo board for servo power
-* UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to power raspberry pi, lcd panel, pca9685 control board.
+* Battery: 2s 5200 mAh Lipo, direct connection to servo board for servo power
+* UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to power raspberry pi, lcd panel, pca9685 control board (optional).
 * Lidar: RPLidar A1
 * Custom 3d printed parts for mounts and reinforcements
 
@@ -25,11 +25,11 @@ More information about the hardware, including the additional custom 3d printed 
 
 
 #### Software:
-This repo is structured as a catkin workspace in a ROS Kinetic envivornment on Ubuntu 16.04. The software may not work or compile outside this environment. Raspberry Pi images preloaded with Ubuntu 16.04 and a ROS Kinetic installation can be found via ubiquity robotics. [See ubiquity robotics webpage](https://downloads.ubiquityrobotics.com/) for download, setup, and wifi setup instructions. It is suggested to also install ROS Kinetic on a Ubuntu 16.04 linux installation/dual boot/virtual machine on a PC for development and for running control nodes. Instructions to install ROS kinetic can be found [here](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+This repo is structured as a catkin workspace in a ROS Melodic envivornment on Ubuntu 16.04. The software may not work or compile outside this environment. Jetson nano images preloaded with Ubuntu 18.04 and a ROS Melodic installation can be found via ubiquity robotics. [See ubiquity robotics webpage](https://downloads.ubiquityrobotics.com/) for download, setup, and wifi setup instructions. It is suggested to also install ROS Melodic on a Ubuntu 18.04 linux installation/dual boot/virtual machine on a PC for development and for running control nodes. Instructions to install ROS kinetic can be found [here](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
-**NOTE**  A SWAP partition of about 1 GB on the RPI's sd card is necessary to increase the virtual memory available beyond the RPI's onboard RAM. In my experience the catkin compilation process uses all the onboard RAM and stalls indefinitely and does not complete without adding a SWAP partition. Example instructions for adding a SWAP partition [can be found here](https://nebl.io/neblio-university/enabling-increasing-raspberry-pi-swap/). 
+**NOTE**  A SWAP partition of about 8 GB on the jetson sd card is necessary to increase the virtual memory available beyond the Jetsons onboard RAM. In my experience the catkin compilation process uses all the onboard RAM and stalls indefinitely and does not complete without adding a SWAP partition. Example instructions for adding a SWAP partition. 
 
-The provided ROS Catkin make build system can be utilized, but I used `catkin tools` instead ([see catkin tools website]((https://catkin-tools.readthedocs.io/en/latest/))). Compilation commands below will be given assuming `catkin tools`. If not using catkin tools on the raspberry pi, the stock `catkin_make` can be used to compile the code via command such as `catkin_make -DCMAKE_BUILD_TYPE=Release` from the home of the catkin workspace.
+The provided ROS Melodic make build system can be utilized, but I used `catkin tools` instead ([see catkin tools website]((https://catkin-tools.readthedocs.io/en/latest/))). Compilation commands below will be given assuming `catkin tools`. If not using catkin tools on the jetson nano, the stock `catkin_make` can be used to compile the code via command such as `catkin_make -DCMAKE_BUILD_TYPE=Release` from the home of the catkin workspace.
 
 ##### Software Checkout and Setup:
 
@@ -57,9 +57,9 @@ If any git permission errors are encountered, try the following suggestions via 
 
 Three additional ROS packages may need to be installed for this project to build succesfully. They can be installed via:
 ```
-sudo apt-get install ros-kinetic-joy
-sudo apt-get install ros-kinetic-rplidar-ros
-sudo apt-get install ros-kinetic-hector-slam
+sudo apt-get install ros-Melodic-joy
+sudo apt-get install ros-Melodic-rplidar-ros
+sudo apt-get install ros-Melodic-hector-slam
 ```
 
 Since the same repo is checked out on both a pi and a laptop/PC, you will need to install an i2c library on the laptop/pc for the software to compile correctly. The `i2cpwm_board` node is not run on the laptop/pc, but compilation will look for dependencies for this node. Install the necessary library via:
@@ -74,7 +74,7 @@ Compile spot_micro_motion_cmd and i2cpwm_board nodes via catkin tools. The comma
 Or just build entire project:
 `catkin build`
 
-If you get an error like the below when running on the pi its likely you are missing the libi2c-dev, which may not be installed in the rpi image you download. To fix this, you could install the library on your pi with an `apt-get` command. If you don't have internet on the pi, you can download the file as a debian `.deb` package to your main computer with the right version for ubuntu 16.04 (https://ubuntu.pkgs.org/16.04/ubuntu-universe-amd64/libi2c-dev_3.1.1-1_all.deb.html) and then copy the file via `scp` to the pi (`scp libi2c-dev_3.1.1-1_all.deb ubuntu@10.42.0.1:~/`) and and install it manually (`sudo dpkg -i libi2c-dev_3.1.1-1_all.deb`).
+If you get an error like the below when running on the Json its likely you are missing the libi2c-dev, which may not be installed in the rpi image you download. To fix this, you could install the library on your pi with an `apt-get` command. If you don't have internet on the pi, you can download the file as a debian `.deb` package to your main computer with the right version for ubuntu 16.04 (https://ubuntu.pkgs.org/16.04/ubuntu-universe-amd64/libi2c-dev_3.1.1-1_all.deb.html) and then copy the file via `scp` to the pi (`scp libi2c-dev_3.1.1-1_all.deb ubuntu@10.42.0.1:~/`) and and install it manually (`sudo dpkg -i libi2c-dev_3.1.1-1_all.deb`).
 ```
 ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/build.make:62: recipe for target 'ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/src/i2cpwm_controller.cpp.o' failed
 make[2]: *** [ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/src/i2cpwm_controller.cpp.o] Error 1
