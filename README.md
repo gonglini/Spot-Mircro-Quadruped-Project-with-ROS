@@ -14,7 +14,7 @@ The frame utilized is the Thingverse Spot Micro frame developed by KDY0523. See 
 Component List:
 * Computer: JetsonNano & Melodic ROS
 * Servo control board: PCA9685, controlled via i2c
-* Servos: CLS6336HV
+* Servos: CLS6336HV x12
 * LCD Panel: 16x2 i2c LCD panel (Optional)
 * Battery: 2s 5200 mAh Lipo, direct connection to servo board for servo power
 * UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to power raspberry pi, lcd panel, pca9685 control board (optional).
