@@ -19,6 +19,7 @@ Component List:
 * Battery: 2s 5200 mAh Lipo, direct connection to servo board for servo power
 * UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to power raspberry pi, lcd panel, pca9685 control board (optional).
 * Lidar: RPLidar A1
+* other: XL4015 dc-dc stepdown converter x2
 * Custom 3d printed parts for mounts and reinforcements
 
 More information about the hardware, including the additional custom 3d printed parts, coordinate system information, and sample hardware installation photos, can be found in the [additional hardware description](docs/additional_hardware_description.md) document.
