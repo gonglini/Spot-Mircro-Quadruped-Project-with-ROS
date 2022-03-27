@@ -15,7 +15,7 @@ The frame utilized is the Thingverse Spot Micro frame developed by KDY0523. See 
 
 Component List:
 * Computer: JetsonNano & Melodic ROS
-* Servo control board: PCA9685, controlled via i2c
+* Servo control board: PCA9685, controlled via i2c (It's easy to break down, so I recommend you to buy extra products.)
 * Servos: CLS6336HV x12
 * LCD Panel: 16x2 i2c LCD panel (Optional)
 * Battery: 2s 5200 mAh Lipo, direct connection to servo board for servo power
