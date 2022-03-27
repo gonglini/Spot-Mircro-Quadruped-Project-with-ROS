@@ -19,7 +19,7 @@ Component List:
 * Servos: CLS6336HV x12
 * LCD Panel: 16x2 i2c LCD panel (Optional)
 * Battery: 2s 5200 mAh Lipo, direct connection to servo board for servo power
-* UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to power raspberry pi, lcd panel, pca9685 control board (optional).
+* UBEC: HKU5 5V/5A ubec, used as 5v voltage regulator to Jetson, lcd panel, pca9685 control board (optional).
 * Lidar: RPLidar A1
 * other: XL4015 dc-dc stepdown converter x2
 * Custom 3d printed parts for mounts and reinforcements
@@ -77,7 +77,7 @@ Compile spot_micro_motion_cmd and i2cpwm_board nodes via catkin tools. The comma
 Or just build entire project:
 `catkin build`
 
-If you get an error like the below when running on the Json its likely you are missing the libi2c-dev, which may not be installed in the rpi image you download. To fix this, you could install the library on your pi with an `apt-get` command. If you don't have internet on the pi, you can download the file as a debian `.deb` package to your main computer with the right version for ubuntu 18.04 (https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/libi2c-dev_3.1.1-1_all.deb.html) and then copy the file via `scp` to the pi (`scp libi2c-dev_3.1.1-1_all.deb ubuntu@10.42.0.1:~/`) and and install it manually (`sudo dpkg -i libi2c-dev_3.1.1-1_all.deb`).
+If you get an error like the below when running on the Json its likely you are missing the libi2c-dev, which may not be installed in the rpi image you download. To fix this, you could install the library on your pi with an `apt-get` command. If you don't have internet on the Json, you can download the file as a debian `.deb` package to your main computer with the right version for ubuntu 18.04 (https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/libi2c-dev_3.1.1-1_all.deb.html) and then copy the file via `scp` to the Json (`scp libi2c-dev_3.1.1-1_all.deb ubuntu@10.42.0.1:~/`) and and install it manually (`sudo dpkg -i libi2c-dev_3.1.1-1_all.deb`).
 ```
 ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/build.make:62: recipe for target 'ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/src/i2cpwm_controller.cpp.o' failed
 make[2]: *** [ros-i2cpwmboard/CMakeFiles/i2cpwm_board.dir/src/i2cpwm_controller.cpp.o] Error 1
@@ -101,7 +101,7 @@ Open at least two terminal windows, with at least one ssh'ed to the Json. I recc
 * **OPTIONAL**: The above two launch files can take optional command line arguments to start additional nodes. Some of the command line arguments are listed below.
     * Command line arguments for `motion_cmd.launch`:
         * `run_standalone:=true`: Runs the motion command node standalone (without running the i2c_pwmboard node)
-        * `debug_mode:=true`: Overrides the `debug_mode` parameter to true. Useful in combination with `run_standalone` for running or debugging the motion command node on a PC instead of the RPi
+        * `debug_mode:=true`: Overrides the `debug_mode` parameter to true. Useful in combination with `run_standalone` for running or debugging the motion command node on a PC instead of the Json
         * `run_lcd:=true`: Runs the lcd monitor node to display simple state information on a LCD monitor if installed. Only works running on a RPi
     * Command line arguments for `keyboard_command.launch`:
         * `run_rviz:=true`: Starts RVIZ and displays a 3d model of the robot with state update in real time.
