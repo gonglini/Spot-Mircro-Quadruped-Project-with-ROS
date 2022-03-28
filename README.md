@@ -3,11 +3,11 @@
 This project was first created by Mike4192 and has been updated as I wish.
 
 difference.
-*servo motor
-*dc-dc converter
-*battery
-*system board
-*others
+* servo motor
+* dc-dc converter
+* battery
+* system board
+* others
 
 https://github.com/mike4192/spotMicro
 
