@@ -1,6 +1,14 @@
 # Spot Micro Quadruped Project
 
 This project was first created by Mike4192 and has been updated as I wish.
+
+difference.
+*servo motor
+*dc-dc converter
+*battery
+*system board
+*others
+
 https://github.com/mike4192/spotMicro
 
 <img src=https://user-images.githubusercontent.com/65767592/160275766-3961450b-984c-4919-9295-fa9ccbe66d64.jpg width="400" height="300"/>
