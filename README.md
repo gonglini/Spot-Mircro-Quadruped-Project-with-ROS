@@ -2,7 +2,7 @@
 
 This project was first created by Mike4192 and has been updated as I wish.
 
-difference.
+Difference.
 * servo motor
 * dc-dc converter
 * battery
